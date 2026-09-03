@@ -3,7 +3,7 @@
   "version": "3.2.0",
   "private": true,
   "description": "Es la aplicacion para hacer Crowd Funding en la Blockchain Polygon",
-  "homepage": "https://themonopolyclub.net/",
+  "homepage": "https://themonopolyclub.net/app",
   "scripts": {
     "dev": "vite",
     "build": "vite build --outDir docs",
