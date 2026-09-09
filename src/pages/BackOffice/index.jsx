@@ -499,7 +499,7 @@ class BackOffice extends Component {
       }
 
       if (url !== '') {
-        image = <img style={{ width: '150px' }} src={'/images/avatars/sello-' + url + '.svg'} alt="sello level"></img>
+        image = <img style={{ width: '150px' }} src={'/images/avatars/sello-' + url + '.png'} alt="sello level"></img>
 
       }
 
