@@ -13,3 +13,86 @@ body {
   color: #f4f4f5;
 }
 
+.contenedor-flex {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 520px;
+  margin: 20px auto 0;
+  padding: 0 6px;
+}
+
+.contenedor-flex .item {
+  background: #121213;
+  border: 2px solid #ffffff;
+  border-radius: 18px;
+  padding: 16px 14px 12px;
+  text-align: center;
+  box-shadow: none;
+}
+
+.contenedor-flex .item h3 {
+  font-size: 30px !important;
+  font-weight: 800 !important;
+  line-height: 1;
+  margin: 2px 0 6px !important;
+  padding: 0 !important;
+  color: #ffffff !important;
+}
+
+.contenedor-flex .item > span {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: #ffffff !important;
+}
+
+.contenedor-flex .item .badge {
+  background: transparent !important;
+  padding: 0 6px !important;
+  font-size: 18px;
+  line-height: 1;
+  border: none;
+}
+
+.contenedor-flex .item .badge i {
+  font-size: 18px;
+}
+
+.contenedor-flex .item button {
+  display: block;
+  width: 92% !important;
+  margin: 10px auto 10px !important;
+  height: 44px;
+  border-radius: 8px !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  line-height: 44px;
+  padding: 0 !important;
+}
+
+.contenedor-flex .item button[style*="gray"] {
+  background-color: #8e8e8e !important;
+  color: #1a1a1a !important;
+  cursor: not-allowed !important;
+}
+
+.level-card-stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-top: 2px;
+}
+
+.level-card-stats .sep {
+  color: #ffffff;
+  font-weight: 400;
+  margin: 0 2px;
+}
+

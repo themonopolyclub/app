@@ -749,32 +749,38 @@ class BackOffice extends Component {
       if (d.bought) {
         return (
           <div className="item" key={"level" + i}>
-            <h3 style={{ color: 'white', margin: '2px', padding: '2px' }}>{i}</h3>
-            <span style={{ color: "white" }}>{price} {tokenName}</span><br></br>
-            <span className={"badge-left badge"} style={{ color: d.estilo1 }}><i className="fa fa-users"></i></span>{"  "}
-            <span className={"badge-center badge"} style={{ color: d.estilo2 }}><i className="fa fa-users"></i></span>{"  "}
-            <span className={"badge-right badge"} style={{ color: d.estilo3 }}><i className="fa fa-users"></i></span>
-            <br></br>
-            <button type="button" className="auth-btn btn btn-success" style={{ color: 'black', width: '80%', backgroundColor: 'gray', cursor: 'not-allowed', fontWeight: 'bold', borderRadius: '5px', borderStyle: 'none' }}> {t("Comprado")}</button>
-            <br></br>
-            <i className="fa fa-users" style={{ color: d.countPersonas > 0 ? '#009030' : '' }}></i> {d.countPersonas} {'  |  '}
-            <i className="fa fa-refresh" style={{ color: d.ciclos > 0 ? '#009030' : '' }}></i> {d.ciclos}
+            <h3>{i}</h3>
+            <span>{price} {tokenName}</span>
+            <div style={{ margin: '8px 0 2px' }}>
+              <span className="badge" style={{ color: d.estilo1 || 'white' }}><i className="fa fa-users"></i></span>
+              <span className="badge" style={{ color: d.estilo2 || 'white' }}><i className="fa fa-users"></i></span>
+              <span className="badge" style={{ color: d.estilo3 || 'white' }}><i className="fa fa-users"></i></span>
+            </div>
+            <button type="button" className="auth-btn btn btn-success" style={{ color: '#1a1a1a', width: '92%', backgroundColor: '#8e8e8e', cursor: 'not-allowed', fontWeight: '800', borderRadius: '8px', borderStyle: 'none', letterSpacing: '3px' }}>{t("Comprado")}</button>
+            <div className="level-card-stats">
+              <span style={{ color: d.countPersonas > 0 ? '#009030' : 'white' }}><i className="fa fa-users"></i> {d.countPersonas}</span>
+              <span className="sep">|</span>
+              <span style={{ color: d.ciclos > 0 ? '#009030' : 'white' }}><i className="fa fa-refresh"></i> {d.ciclos}</span>
+            </div>
           </div>
         );
       }
 
       return (
         <div className="item" key={"level-" + i}>
-          <h3 style={{ color: 'white', margin: '2px', padding: '2px' }}>{i} </h3>
-          <span style={{ color: "white" }}>{price} {tokenName}</span><br></br>
-          <span className={"badge-left badge"}><i className="fa fa-users"></i></span>{"  "}
-          <span className={"badge-center badge"}><i className="fa fa-users"></i></span>{"  "}
-          <span className={"badge-right badge"}><i className="fa fa-users"></i></span>
-          <br></br>
-          <button type="button" className="btn" onClick={() => { this.deposit() }} style={{ color: 'white', width: '80%', backgroundColor: '#009030', borderRadius: '5px', fontWeight: 'bold', borderStyle: 'none' }}> <b>{t("Comprar Nivel")}</b></button>
-          <br></br>
-          <i className="fa fa-users"></i> 0 {'  |  '}
-          <i className="fa fa-refresh"></i> 0
+          <h3>{i}</h3>
+          <span>{price} {tokenName}</span>
+          <div style={{ margin: '8px 0 2px' }}>
+            <span className="badge" style={{ color: 'white' }}><i className="fa fa-users"></i></span>
+            <span className="badge" style={{ color: 'white' }}><i className="fa fa-users"></i></span>
+            <span className="badge" style={{ color: 'white' }}><i className="fa fa-users"></i></span>
+          </div>
+          <button type="button" className="btn" onClick={() => { this.deposit() }} style={{ color: 'white', width: '92%', backgroundColor: '#009030', borderRadius: '8px', fontWeight: '800', borderStyle: 'none', letterSpacing: '1px' }}><b>{t("Comprar Nivel")}</b></button>
+          <div className="level-card-stats">
+            <span style={{ color: 'white' }}><i className="fa fa-users"></i> 0</span>
+            <span className="sep">|</span>
+            <span style={{ color: 'white' }}><i className="fa fa-refresh"></i> 0</span>
+          </div>
         </div>
       );
     });
