@@ -1,21 +1,33 @@
 import React, { createContext, useCallback, useContext, useState } from "react";
 import Cookies from "universal-cookie";
 import en from "./locales/en.json";
+import pt from "./locales/pt.json";
+import hi from "./locales/hi.json";
 
 const cookies = new Cookies();
 
 export const LANG_COOKIE = "tmc_lang";
 export const SOURCE_LANG = "es";
 export const FALLBACK_LANG = "en";
-export const SUPPORTED_LANGS = ["es", "en"];
+export const SUPPORTED_LANGS = ["es", "en", "pt", "hi"];
 
-const DICTIONARIES = { en };
+// ── Modo de idioma ──────────────────────────────────────────────────────────
+// null                       → multi-idioma: el usuario elige y se muestra el selector.
+// "es" | "en" | "pt" | "hi"  → idioma fijo: se renderiza SOLO ese idioma y el
+//                              selector de idioma queda oculto.
+// Para cambiar de modo, edita este valor y recompila/recarga.
+export const FORCED_LANG = "es";
+
+const DICTIONARIES = { en, pt, hi };
 
 function normalize(lang) {
   return (lang || "").toLowerCase().split(/[-_]/)[0];
 }
 
 export function detectLang() {
+  const forced = normalize(FORCED_LANG);
+  if (SUPPORTED_LANGS.includes(forced)) return forced;
+
   const saved = normalize(cookies.get(LANG_COOKIE));
   if (SUPPORTED_LANGS.includes(saved)) return saved;
 
@@ -54,8 +66,10 @@ export const LangContext = createContext(null);
 
 export function LangProvider({ children }) {
   const [lang, setLangState] = useState(detectLang);
+  const isForced = SUPPORTED_LANGS.includes(normalize(FORCED_LANG));
 
   const setLang = useCallback((next) => {
+    if (isForced) return;
     const normalized = normalize(next);
     if (!SUPPORTED_LANGS.includes(normalized)) return;
     cookies.set(LANG_COOKIE, normalized, {
@@ -64,7 +78,7 @@ export function LangProvider({ children }) {
       sameSite: "lax",
     });
     setLangState(normalized);
-  }, []);
+  }, [isForced]);
 
   const t = useCallback(
     (text, params) => translate(lang, text, params),
@@ -72,7 +86,7 @@ export function LangProvider({ children }) {
   );
 
   return (
-    <LangContext.Provider value={{ lang, t, setLang }}>
+    <LangContext.Provider value={{ lang, t, setLang, isForced }}>
       {children}
     </LangContext.Provider>
   );

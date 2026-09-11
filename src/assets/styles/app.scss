@@ -8,6 +8,23 @@
 @import '../../../node_modules/bootstrap/scss/mixins';
 @import 'mixins';
 
+// Global font enforcement - Force Montserrat on text elements only
+body, p, div, span, h1, h2, h3, h4, h5, h6, 
+button, a, td, th, tr, table,
+input, select, textarea, label, li, ul, ol {
+  font-family: "montserrat-regular", "Montserrat", sans-serif !important;
+}
+
+// Ensure Font Awesome icons work - exclude from font change
+.fa, .fas, .far, .fal, .fab, .la, .glyphicon {
+  font-family: "FontAwesome", "Font Awesome 5 Free", "Font Awesome 5 Brands", "Line Awesome" !important;
+}
+
+// Fix for icon pseudo-elements
+.fa:before, .fas:before, .far:before, .fal:before, .fab:before, .la:before {
+  font-family: inherit !important;
+}
+
 body {
   background-color: #0c0c0f;
   color: #f4f4f5;

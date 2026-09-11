@@ -470,7 +470,7 @@ class BackOffice extends Component {
       let image = <></>
       let url = ''
 
-      if (ganado.toNumber() >= 2000 && level >= 4) {
+      if (ganado.toNumber() >= 1000 && level >= 3) {
         url = '1'
       }
 
@@ -482,20 +482,12 @@ class BackOffice extends Component {
         url = '3'
       }
 
-      if (ganado.toNumber() >= 1000000 && level >= 13) {
+      if (ganado.toNumber() >= 1000000 && level >= 9) {
         url = '4'
       }
 
-      if ((ganado.toNumber() >= 10000000 && level >= 14)) {
+      if (ganado.toNumber() >= 10000000 && level >= 9) {
         url = '5'
-      }
-
-      if (ganado.toNumber() >= 50000000 && level >= 15) {
-        url = '6'
-      }
-
-      if (ganado.toNumber() >= 100000000 && level >= 15) {
-        url = '7'
       }
 
       if (url !== '') {
@@ -595,7 +587,7 @@ class BackOffice extends Component {
     let from = wallet;
 
     if (level > LAST_LEVEL) {
-      window.alert(this.context.t("Has alcanzado el último nivel"));
+      window.alert(this.context.t("Has alcanzado el último paquete"));
       return;
     }
 
@@ -720,27 +712,27 @@ class BackOffice extends Component {
       wallet = walletView
     }
 
-    let texto = t("Comprar | {price}", { price: levelPrice.toString(10) + tokenName });
+    let texto = t("Comprar paquete | {price}", { price: levelPrice.toString(10) + tokenName });
 
     if (level === 0) {
       texto = t("Registrarse | {price}", { price: levelPrice.toString(10) + tokenName });
     }
 
     if (level === LAST_LEVEL) {
-      texto = t("Nivel Máximo Alcanzado")
+      texto = t("Paquete Máximo Alcanzado")
     }
 
     if (aprovedUSDT.toNumber() === 0) {
-      texto = t("Aprobar Token")
+      texto = t("Conectar Wallet")
     }
 
     if (!metamask.logged) {
-      texto = t("Conectar Billetera")
+      texto = t("Conectar Wallet")
     }
 
     const linkText = link === "Loading..."
       ? t("Cargando...")
-      : link || t("Realiza una inversión para obtener tu enlace de referido");
+      : link || t("Compra un paquete para obtener tu enlace de referido");
 
     const canastas = (levelData || []).map((d, idx) => {
       const i = idx + 1;
@@ -775,7 +767,7 @@ class BackOffice extends Component {
             <span className="badge" style={{ color: 'white' }}><i className="fa fa-users"></i></span>
             <span className="badge" style={{ color: 'white' }}><i className="fa fa-users"></i></span>
           </div>
-          <button type="button" className="btn" onClick={() => { this.deposit() }} style={{ color: 'white', width: '92%', backgroundColor: '#009030', borderRadius: '8px', fontWeight: '800', borderStyle: 'none', letterSpacing: '1px' }}><b>{t("Comprar Nivel")}</b></button>
+          <button type="button" className="btn" onClick={() => { this.deposit() }} style={{ color: 'white', width: '92%', backgroundColor: '#009030', borderRadius: '8px', fontWeight: '800', borderStyle: 'none', letterSpacing: '1px' }}><b>{t("Comprar Paquete")}</b></button>
           <div className="level-card-stats">
             <span style={{ color: 'white' }}><i className="fa fa-users"></i> 0</span>
             <span className="sep">|</span>
@@ -813,7 +805,7 @@ class BackOffice extends Component {
             <tbody>
               <tr>
                 <td>
-                  {t("GANANCIAS")}
+                  {t("INGRESOS")}
                 </td>
                 <td style={{ textAlign: 'right', color: "#009030" }}>
                   <span style={{ fontWeight: 'bold' }}>{ganado.dp(2).toString(10).replace(/\B(?=(\d{3})+(?!\d))/g, ',')} {tokenName}</span>
@@ -829,7 +821,7 @@ class BackOffice extends Component {
               </tr>
               <tr>
                 <td>
-                  {t("Nivel")}
+                  {t("Paquete")}
                 </td>
                 <td style={{ textAlign: 'right' }}>
                   <strong>{level}/{LAST_LEVEL}</strong>
@@ -837,7 +829,7 @@ class BackOffice extends Component {
               </tr>
               <tr>
                 <td>
-                  {t("Socios")}
+                  {t("Invitados")}
                 </td>
                 <td style={{ textAlign: 'right' }}>
                   <strong>{team}</strong>
@@ -886,7 +878,7 @@ class BackOffice extends Component {
               navigator.clipboard.writeText(link);
               window.alert(t("¡Enlace copiado!"))
             }
-          }} style={{ color: 'white', width: '100%', backgroundColor: '#009030', borderRadius: '5px', borderStyle: 'none' }}>{t("Copiar enlace de referido")} <span><i className="fa fa-clipboard text-white"></i></span></button>
+          }} style={{ color: 'white', width: '100%', backgroundColor: '#009030', borderRadius: '5px', borderStyle: 'none' }}>{t("Copiar link referido")} <span><i className="fa fa-clipboard text-white"></i></span></button>
 
         </div>
 
@@ -901,31 +893,29 @@ class BackOffice extends Component {
         <div style={{ textAlign: 'center' }}>
           <p style={{ wordBreak: 'break-all' }}>
 
-            <span color="transparent" className="btn-xs float-left py-0" id="load-notifications-btn" style={{ height: '45px', maxHeight: '45px' }}><i className="fa fa-users"></i> {t("Número de socios en el nivel")}</span>
+            <span color="transparent" className="btn-xs float-left py-0" id="load-notifications-btn" style={{ height: '45px', maxHeight: '45px' }}><i className="fa fa-users"></i> {t("Paquetes vacíos")}</span>
             <br></br>
-            <span color="transparent" className="btn-xs float-left py-0" id="load-notifications-btn" style={{ height: '45px', maxHeight: '45px' }}><i className="fa fa-refresh"></i> {t("Ciclo del nivel")}</span>
+            <span color="transparent" className="btn-xs float-left py-0" id="load-notifications-btn" style={{ height: '45px', maxHeight: '45px' }}><i className="fa fa-refresh"></i> {t("Paquetes ciclados")}</span>
             <br></br>
-            <span color="transparent" className="btn-xs float-left py-0" id="load-notifications-btn" style={{ height: '45px', maxHeight: '45px' }}><span style={{ color: "#009030" }}>{this.props.users} <i className="fa fa-users"></i></span> {t("Todos los participantes")}</span>
-            <br></br>
-            <span color="transparent" className="btn-xs float-left py-0" id="load-notifications-btn" style={{ height: '45px', maxHeight: '45px' }}><span style={{ color: "#009030" }}>{this.props.last24} <i className="fa fa-users"></i></span> {t("Se unieron en 24H")}</span>
+            <span color="transparent" className="btn-xs float-left py-0" id="load-notifications-btn" style={{ height: '45px', maxHeight: '45px' }}><span style={{ color: "#009030" }}>{this.props.users} <i className="fa fa-users"></i></span> {t("Paquetes agregados")}</span>
 
 
           </p>
           <hr color="white"></hr>
 
           <p>
-            {t("Mi Billetera:")} <br></br>
+            {t("Mi Wallet:")} <br></br>
             {wallet}
           </p>
 
           <p>
-            {t("Billetera del Patrocinador:")} <br></br>
+            {t("Wallet del Patrocinador:")} <br></br>
             {sponsor}
           </p>
 
           <p>
-            {t("Dirección del Token:")} <br></br>
-            <a href={"https://polygonscan.com/address/" + addressToken} >{addressToken}</a>
+            {t("Dirección del Contrato:")} <br></br>
+            <a href={"https://polygonscan.com/address/" + Utils.contract} >{Utils.contract}</a>
           </p>
         </div>
 

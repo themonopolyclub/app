@@ -15,6 +15,7 @@ const RPC = Utils.rpc;
 const contractAddress = Utils.contract;
 const web3 = new Web3(RPC);
 const contract = new web3.eth.Contract(abiTMC, contractAddress);
+const SHOW_USER_STATS = false;
 
 async function getLastUserId() {
   try {
@@ -86,6 +87,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+    if (!SHOW_USER_STATS) return;
     getLastUserId().then((r) => {
       console.log("[App] getLastUserId ->", r);
       this.setState({ users: r });

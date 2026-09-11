@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { LangContext } from "../../i18n";
 
+const SHOW_USER_STATS = false;
+
 export default class Home extends Component {
     static contextType = LangContext;
 
@@ -42,6 +44,7 @@ export default class Home extends Component {
 
                 </section>
 
+                {SHOW_USER_STATS && (
                 <section id='about' className="s-about">
 
                     <div className="row about-stats stats block-1-4 block-m-1-2 block-mob-full" >
@@ -60,6 +63,7 @@ export default class Home extends Component {
                     <div className="about__line"></div>
 
                 </section>
+                )}
 
                 <section id='services' className="s-services">
 
@@ -78,7 +82,7 @@ export default class Home extends Component {
                             <div className="service-text">
                                 <h3 className="h2">{t("Inmutabilidad")}</h3>
                                 <p>
-                                    {t("La blockchain asegura el algoritmo, por lo tanto nadie, ni siquiera los creadores o desarrolladores, puede cambiar, cancelar, detener o alterar tus transacciones.")}
+                                    {t("La blockchain asegura el algoritmo, por lo tanto nadie puede cambiar, cancelar, detener o alterar tus transacciones.")}
                                 </p>
                             </div>
                         </div>
@@ -90,7 +94,7 @@ export default class Home extends Component {
                             <div className="service-text">
                                 <h3 className="h2">{t("Automático")}</h3>
                                 <p>
-                                    {t("Todas las transacciones entre los miembros de la comunidad se ejecutan directamente de una billetera personal a otra. El contrato inteligente de TMC no almacena tus fondos.")}
+                                    {t("Todas las transacciones entre los miembros de la comunidad se ejecutan directamente de una billetera personal a otra. El contrato inteligente de TMC no almacena tus fondos y tampoco existen puertas ocultas.")}
                                 </p>
                             </div>
                         </div>
@@ -135,7 +139,7 @@ export default class Home extends Component {
                         <div className="col-full">
 
                             <div className="testimonials__slide">
-                                <details close="true" style={{ cursor: 'pointer' }}>
+                                <details style={{ cursor: 'pointer' }}>
                                     <summary>{t("¿Qué es THE MONOPOLY CLUB?")}</summary>
 
                                     <div className="faq__content">
@@ -145,7 +149,7 @@ export default class Home extends Component {
                             </div>
 
                             <div className="testimonials__slide">
-                                <details close="true" style={{ cursor: 'pointer' }}>
+                                <details style={{ cursor: 'pointer' }}>
                                     <summary>{t("¿Necesito retirar mis ganancias de THE MONOPOLY CLUB?")}</summary>
 
                                     <div className="faq__content">
@@ -154,7 +158,7 @@ export default class Home extends Component {
                                 </details>
                             </div>
                             <div className="testimonials__slide">
-                                <details close="true" style={{ cursor: 'pointer' }}>
+                                <details style={{ cursor: 'pointer' }}>
                                     <summary>{t("¿Quién administra la plataforma?")}</summary>
 
                                     <div className="faq__content">
@@ -164,11 +168,11 @@ export default class Home extends Component {
                                 </details>
                             </div>
                             <div className="testimonials__slide">
-                                <details close="true" style={{ cursor: 'pointer' }}>
+                                <details style={{ cursor: 'pointer' }}>
                                     <summary>{t("¿Puedo unirme a THE MONOPOLY CLUB desde mi país?")}</summary>
 
                                     <div className="faq__content">
-                                        <p>{t("Absolutamente, TMC es internacional y puedes unirte desde cualquier país del mundo. Solo necesitas un dispositivo móvil, tableta o computadora portátil y una conexión a internet.")}</p>
+                                        <p>{t("Si eres ciudadano de estos países o resides en ellos NO PUEDES UNIRTE: ESTADOS UNIDOS, todos los países de la UNIÓN EUROPEA, DUBAI, AUSTRALIA, CANADÁ, PUERTO RICO, HAWÁI, GUAM, ISLAS VÍRGENES, CHINA, HONG KONG, JAPÓN Y REINO UNIDO. Si resides en el resto de los países, sí puedes unirte.")}</p>
 
                                     </div>
                                 </details>
@@ -184,7 +188,7 @@ export default class Home extends Component {
                             <form onSubmit={(e) => { e.preventDefault(); const wallet = e.target.wallet.value; window.location.href = '/?viewoffice&wallet=' + encodeURIComponent(wallet); }}>
                                 <input type="hidden" name="viewoffice" value="true" />
 
-                                <input style={{ display: 'block', marginRight: 'auto', marginLeft: 'auto', width: '80%', textAlign: 'center', backgroundColor: 'lightgray', border: 'none', borderRadius: '7px' }} type="text" name="wallet" placeholder={t("ID o Billetera")}></input>
+                                <input style={{ display: 'block', marginRight: 'auto', marginLeft: 'auto', width: '80%', textAlign: 'center', backgroundColor: 'lightgray', border: 'none', borderRadius: '7px' }} type="text" name="wallet" placeholder={t("ID o Wallet")}></input>
 
                                 <button type="submit" style={{ width: '80%', color: 'white', backgroundColor: '#009030', borderRadius: '5px', borderStyle: 'none' }} >{t("Visualizar la Cuenta")}</button>
                             </form>

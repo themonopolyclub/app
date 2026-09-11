@@ -5,6 +5,8 @@ import { LangContext, SUPPORTED_LANGS } from "../i18n";
 const LANG_LABELS = {
   es: "Español",
   en: "English",
+  pt: "Português",
+  hi: "हिन्दी",
 };
 
 const styles = {
@@ -77,7 +79,7 @@ export default class Layout extends Component {
   }
 
   render() {
-    const { lang, t, setLang } = this.context;
+    const { lang, t, setLang, isForced } = this.context;
 
     return (
       <>
@@ -128,18 +130,20 @@ export default class Layout extends Component {
                   <span style={styles.separator}>|</span>
                   <a href="/?disclaimer" style={styles.footerLink}>{t("Aviso Legal")}</a>
                 </div>
-                <select
-                  style={styles.langSelect}
-                  value={lang}
-                  aria-label={t("Seleccionar idioma")}
-                  onChange={(e) => setLang(e.target.value)}
-                >
-                  {SUPPORTED_LANGS.map((code) => (
-                    <option key={code} value={code}>
-                      {LANG_LABELS[code] || code.toUpperCase()}
-                    </option>
-                  ))}
-                </select>
+                {!isForced && (
+                  <select
+                    style={styles.langSelect}
+                    value={lang}
+                    aria-label={t("Seleccionar idioma")}
+                    onChange={(e) => setLang(e.target.value)}
+                  >
+                    {SUPPORTED_LANGS.map((code) => (
+                      <option key={code} value={code}>
+                        {LANG_LABELS[code] || code.toUpperCase()}
+                      </option>
+                    ))}
+                  </select>
+                )}
               </div>
 
               <div className="go-top">
