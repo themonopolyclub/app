@@ -1,13 +1,3 @@
-/**
- * Customized version of bootstrap using variables from _variables.scss.
- * This file is loaded via separate loader thus allowing to use original bootstrap classes (e.g. .btn-default) through out the app.
- */
-@import '../../../node_modules/bootstrap/scss/functions';
-@import 'variables';
-@import '../../../node_modules/bootstrap/scss/variables';
-@import '../../../node_modules/bootstrap/scss/mixins';
-@import 'mixins';
-
 // Global font enforcement - Force Montserrat on text elements only
 body, p, div, span, h1, h2, h3, h4, h5, h6, 
 button, a, td, th, tr, table,

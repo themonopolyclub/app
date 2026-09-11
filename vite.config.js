@@ -16,5 +16,19 @@ export default defineConfig({
   },
   build: {
     outDir: 'docs',
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (!id.includes('node_modules')) return undefined;
+          if (/[\\/]node_modules[\\/]web3([\\/-]|$)/.test(id) || id.includes('@noble') || id.includes('abitype') || id.includes('ethereum-cryptography')) {
+            return 'web3';
+          }
+          if (/[\\/]node_modules[\\/](react|react-dom|scheduler)[\\/]/.test(id)) {
+            return 'react';
+          }
+          return 'vendor';
+        },
+      },
+    },
   },
 });
